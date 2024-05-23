@@ -1,4 +1,4 @@
-<img src="public/featured.png" width="540" align="right" />
+<img src="public/featured.png" width="360" align="right" />
 
 # ✨ Fireflies
 
