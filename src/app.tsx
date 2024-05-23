@@ -5,7 +5,7 @@ import { format } from "./libs/format"
 export default function App() {
   const milestone = useMemo(() => {
     const url = new URL(window.location.href)
-    const milestone = url.searchParams.get("t") || url.searchParams.get("m")
+    const milestone = url.searchParams.get("t") || url.searchParams.get("time") || url.searchParams.get("m") || url.searchParams.get("milestone")
     if (!milestone)
       return new Date()
 
@@ -23,10 +23,20 @@ export default function App() {
     return new Date()
   }, [])
 
+  const label = useMemo(() => {
+    const url = new URL(window.location.href)
+    const label = url.searchParams.get("l") || url.searchParams.get("label")
+    if (label)
+      return label.slice(0, 64)
+
+    return undefined
+  }, [])
+
   return (
     <main className="min-h-screen max-w-[512px] flex flex-col mx-auto p-2 md:p-9 gap-2 md:gap-4">
       <h1 className="font-bricolage text-2xl font-bold text-center">Fireflies</h1>
       <div className="mx-auto bg-stone-50 p-4 rounded-lg border border-stone-200 shadow-lg shadow-stone-200 w-full">
+        {label && <h2 className="text-center font-semibold font-bricolage text-2xl mb-4 text-balance">{label}</h2>}
         <div className="text-center">
           {format(milestone)}
         </div>
@@ -52,6 +62,18 @@ export default function App() {
             {" "}
             <a href="https://owlcity.com/" target="_blank" rel="noreferrer noopener" className="text-amber-700">Owl City</a>
           </span>
+        </div>
+      </div>
+      <div className="text-center text-xs text-stone-500">
+        <div>
+          build with 💖 by
+          {" "}
+          <a href="https://github.com/monodyle" target="_blank" rel="noreferrer noopener" className="underline decoration-dashed">monodyle</a>
+        </div>
+        <div className="flex items-center gap-1 justify-center">
+          <a href="https://ko-fi.com/monodyle" target="_blank" rel="noreferrer noopener" className="underline decoration-dashed">buy me a coffee</a>
+          ・
+          <a href="https://github.com/monodyle/fireflies" target="_blank" rel="noreferrer noopener" className="underline decoration-dashed">github</a>
         </div>
       </div>
     </main>

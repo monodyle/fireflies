@@ -18,9 +18,14 @@ You can access the application at [https://fireflies.minhle.space][website]. By 
 
 If you wish to count from a specific milestone (such as birthdays, anniversaries, deadlines, etc.), you can use the following URL formats:
 
-- **ISO Format**: https://fireflies.minhle.space?t=2024-05-23T11:06:24.000Z
-- **YYYY-MM-DD HH:mm:ss Format**: [https://fireflies.minhle.space?t=2024-05-23 11:06:24](https://fireflies.minhle.space?t=2024-05-23%2011:06:24)
-- **Milliseconds Since Epoch**: https://fireflies.minhle.space?t=1716462384000
-- **Seconds Since Epoch**: https://fireflies.minhle.space?t=1716462384
+- **ISO Format**: [https://fireflies.minhle.space?t=2024-05-23T11:06:24.000Z&l=I'm lived, since...](https://fireflies.minhle.space/?t=2024-05-23T11:06:24.000Z&l=I%27m%20lived,%20since...)
+- **YYYY-MM-DD HH:mm:ss Format**: [https://fireflies.minhle.space?t=2024-05-23 11:06:24&l=I'm lived, since...](https://fireflies.minhle.space?t=2024-05-23%2011:06:24&l=I%27m%20lived,%20since...)
+- **Milliseconds Since Epoch**: [https://fireflies.minhle.space?t=1716462384000&l=I%27m%20lived,%20since...](https://fireflies.minhle.space?t=1716462384000&l=I%27m%20lived,%20since...)
+- **Seconds Since Epoch**: [https://fireflies.minhle.space?t=1716462384&l=I%27m%20lived,%20since...](https://fireflies.minhle.space?t=1716462384&l=I%27m%20lived,%20since...)
 
 Simply replace the timestamp in the URL with your desired milestone to start counting from that point.
+
+**Paramaters:**
+
+- **`t` / `time` / `m` / `milestone`**: Specifies the milestone time. This can be in ISO format, milliseconds, seconds, or any valid time string recognized by JavaScript
+- **`l` / `label`**: Specifies the display label for the milestone
