@@ -1,23 +1,42 @@
+import { useMemo } from "react"
 import { Counter } from "./components/counter"
 import { format } from "./libs/format"
 
 export default function App() {
-  const now = new Date()
+  const milestone = useMemo(() => {
+    const url = new URL(window.location.href)
+    const milestone = url.searchParams.get("t") || url.searchParams.get("m")
+    if (!milestone)
+      return new Date()
+
+    const time = Number(milestone)
+    if (time && !Number.isNaN(time)) {
+      if (milestone.length === 10)
+        return new Date(time * 1000)
+
+      return new Date(time)
+    }
+
+    if (!Number.isNaN(Date.parse(milestone)))
+      return new Date(milestone)
+
+    return new Date()
+  }, [])
 
   return (
     <main className="min-h-screen max-w-[512px] flex flex-col mx-auto p-2 md:p-9 gap-2 md:gap-4">
       <h1 className="font-bricolage text-2xl font-bold text-center">Fireflies</h1>
       <div className="mx-auto bg-stone-50 p-4 rounded-lg border border-stone-200 shadow-lg shadow-stone-200 w-full">
         <div className="text-center">
-          {format(now)}
+          {format(milestone)}
         </div>
         <div className="text-xs text-center text-stone-600">
           UTC:
           {" "}
-          {format(now, "utc")}
+          {format(milestone, "utc")}
         </div>
         <div className="my-4 border-b border-stone-200 -mx-4" />
-        <Counter milestone={now} />
+        <Counter milestone={milestone} />
         <div className="my-4 border-b border-stone-200 -mx-4" />
         <div className="py-4 text-center">
           <p className="font-bricolage text-xl pr-8 before:content-['“'] before:text-3xl before:font-serif before:text-stone-400 before:font-bold">

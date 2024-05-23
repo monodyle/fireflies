@@ -66,7 +66,7 @@ function _Counter({ milestone: _milestone }: CounterProps) {
   }, [milestone])
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 py-2">
       <div className="text-center text-sm text-stone-700">It&apos;s</div>
       <Number decimals={2} label="seconds" />
       <Number decimals={3} label="minutes" />
